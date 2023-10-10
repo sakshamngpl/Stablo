@@ -40,7 +40,7 @@ function RelatedPosts({ related, pathPrefix }) {
   return (
     <div className="mt-10">
       <h3 className="text-2xl font-bold dark:text-white">Related</h3>
-      <div className="mt-6 grid gap-6">
+      <div className="grid gap-6 mt-6">
         {related.slice(0, 3).map((item, index) => {
           const imageProps = item?.image
             ? urlForImage(item?.image)
@@ -52,9 +52,10 @@ function RelatedPosts({ related, pathPrefix }) {
                 item.slug.current
               }`}>
               <div className="flex gap-5">
-                <div className="relative h-20 w-24 shrink-0 overflow-hidden rounded-md">
+                <div className="relative w-24 h-20 overflow-hidden rounded-md shrink-0">
                   <Image
                     src={imageProps.src}
+                    loader={imageProps.loader}
                     alt={item.title || "Thumbnail"}
                     fill
                     sizes="100vw"
@@ -84,7 +85,7 @@ function Categories({ categories }) {
       <h3 className="text-2xl font-bold dark:text-white">
         Categories
       </h3>
-      <ul className="mt-4 grid">
+      <ul className="grid mt-4">
         {categories.map((item, index) => (
           <li key={item._id}>
             <Link

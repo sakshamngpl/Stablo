@@ -8,13 +8,19 @@ import Image from "next/image";
 import { urlForImage } from "@/lib/sanity/image";
 import cx from "clsx";
 import { ChevronDownIcon } from "@heroicons/react/24/solid";
-import { myLoader } from "@/utils/all";
 
 export default function Navbar(props) {
   const leftmenu = [
     {
       label: "Home",
-      href: "/"
+      href: "#",
+      children: [
+        { title: "Home Default", path: "/" },
+        { title: "Home Alternate", path: "/home/alt" },
+        { title: "Home Minimal", path: "/home/minimal" },
+        { title: "Home Lifestyle", path: "/home/lifestyle" },
+        { title: "Home Two Column", path: "/home/2-col" }
+      ]
     },
     {
       label: "About",
@@ -28,17 +34,47 @@ export default function Navbar(props) {
 
   const rightmenu = [
     {
-      label: "Archive",
-      href: "/archive"
+      label: "Pages",
+      href: "#",
+      children: [
+        {
+          title: "Category Page",
+          path: "/category/personal-growth"
+        },
+        {
+          title: "Author Page",
+          path: "/author/mario-sanchez"
+        },
+        {
+          title: "Search Page",
+          path: "/search?q=life"
+        },
+        { title: "Archive - Pagination", path: "/archive" },
+        {
+          title: "Single Post - Default",
+          path: "/post/10-simple-practices-that-will-help-you-get-1-better-every-day"
+        },
+        {
+          title: "Single Post - Minimal",
+          path: "/post/minimal/architectural-engineering-wonders-of-the-modern-era-for-your-inspiration"
+        },
+        {
+          title: "Single Post - Lifestyle",
+          path: "/post/lifestyle/there-s-nothing-new-about-undermining-women-s-autonomy"
+        },
+        {
+          title: "Single Post - Sidebar",
+          path: "/post/sidebar/lessons-of-happiness-i-learned-from-a-mountain-village"
+        }
+      ]
     },
     {
-      label: "Pro Version",
-      href: "https://stablo-pro.web3templates.com/",
-      external: true,
-      badge: "new"
+      label: "Free Version",
+      href: "https://stablo.web3templates.com/",
+      external: true
     },
     {
-      label: "Download",
+      label: "Purchase",
       href: "https://web3templates.com/templates/stablo-minimal-blog-website-template",
       external: true
     }
@@ -144,12 +180,7 @@ export default function Navbar(props) {
                           className="px-5 py-2 text-sm font-medium text-gray-600 hover:text-blue-500 dark:text-gray-400"
                           target={item.external ? "_blank" : ""}
                           rel={item.external ? "noopener" : ""}>
-                          <span> {item.label}</span>
-                          {item.badge && (
-                            <span className="ml-2 rounded bg-blue-100 px-2 py-0.5 text-xs font-semibold text-blue-600 dark:bg-cyan-200 dark:text-blue-800 ">
-                              {item.badge}
-                            </span>
-                          )}
+                          {item.label}
                         </Link>
                       )}
                     </Fragment>
